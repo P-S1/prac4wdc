@@ -7,5 +7,21 @@
 </head>
 <body>
   <h1>My Prac 4 Express Server</h1>
+  <p id="last-viewed">This page was last viewed: </p>
+  <script>
+    window.onload = function() {
+      var xhr = new XMLHttpRequest();
+      xhr.open('GET', '/last.txt', true);  
+
+      xhr.onload = function() {
+        if (xhr.status === 200) {
+          
+          document.getElementById('last-viewed').innerText = 'This page was last viewed: ' + xhr.responseText;
+        }
+      };
+
+      xhr.send();
+    }
+  </script>
 </body>
 </html>
