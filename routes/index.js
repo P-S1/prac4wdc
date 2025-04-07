@@ -146,30 +146,24 @@ router.get('/about.ajax', function(req, res) {
 
 
 
+// Flag to check if terms are accepted
 let termsAccepted = false;
 
-
+// /accept route: should return 403 if terms not accepted, 200 if accepted
 router.get('/accept', function(req, res) {
-  if (termsAccepted) {
-    
-    res.sendStatus(200);
-  } else {
-    
-    res.sendStatus(403);
-  }
+  termsAccepted = true;  // Mark terms as accepted
+  res.sendStatus(200);  // Send 200 OK response to indicate acceptance
 });
 
-
+// /content.ajax route: should send the content if terms are accepted
 router.get('/content.ajax', function(req, res) {
   if (termsAccepted) {
-    
     res.send(`
       <p>This is the first paragraph of content.</p>
       <p>This is the second paragraph of content.</p>
-    `);
+    `);  // Send content if terms are accepted
   } else {
-    
-    res.sendStatus(403);
+    res.sendStatus(403);  // Send 403 Forbidden if terms are not accepted
   }
 });
 

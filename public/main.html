@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,54 +18,55 @@
   <script>
     function acceptTerms() {
       var xhr = new XMLHttpRequest();
-      xhr.open('GET', '/accept', true);
-      
+      xhr.open('GET', '/accept', true);  
+
       xhr.onload = function() {
         if (xhr.status === 200) {
           
           document.getElementById('terms-content').style.display = 'none';
-          loadContent(); 
+          loadContent();  
         } else {
           alert("You must accept the terms first.");
         }
       };
-      
-      xhr.send();
+
+      xhr.send();  
     }
 
     function loadContent() {
       var xhr = new XMLHttpRequest();
-      xhr.open('GET', '/content.ajax', true);
+      xhr.open('GET', '/content.ajax', true);  
 
       xhr.onload = function() {
         if (xhr.status === 200) {
-          document.getElementById('content').innerHTML = xhr.responseText;
+          document.getElementById('content').innerHTML = xhr.responseText;  
         } else {
           alert("You must accept the terms first.");
         }
       };
-      
-      xhr.send();
+
+      xhr.send();  
     }
-    
+
     window.onload = function() {
       var xhr = new XMLHttpRequest();
-      xhr.open('GET', '/content.ajax', true);
+      xhr.open('GET', '/content.ajax', true);  
 
       xhr.onload = function() {
         if (xhr.status === 403) {
           
           document.getElementById('accept-button').style.display = 'block';
-
-          document.getElementById('accept-button').onclick = acceptTerms;
+          document.getElementById('accept-button').onclick = acceptTerms;  
         } else {
           
           loadContent();
         }
       };
 
-      xhr.send();
+      xhr.send();  
     };
   </script>
 </body>
 </html>
+
+
