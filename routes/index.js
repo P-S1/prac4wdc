@@ -146,4 +146,32 @@ router.get('/about.ajax', function(req, res) {
 
 
 
+let termsAccepted = false;
+
+
+router.get('/accept', function(req, res) {
+  if (termsAccepted) {
+    
+    res.sendStatus(200);
+  } else {
+    
+    res.sendStatus(403);
+  }
+});
+
+
+router.get('/content.ajax', function(req, res) {
+  if (termsAccepted) {
+    
+    res.send(`
+      <p>This is the first paragraph of content.</p>
+      <p>This is the second paragraph of content.</p>
+    `);
+  } else {
+    
+    res.sendStatus(403);
+  }
+});
+
+
 module.exports = router;

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Terms and Conditions</title>
+</head>
+<body>
+  <h1>Terms and Conditions</h1>
+  <div id="terms-content">
+    <p id="terms-text">You must accept the terms and conditions to proceed.</p>
+    <button id="accept-button" type="button">Accept Terms</button>
+  </div>
+
+  <div id="content"></div>
+
+  <script>
+    function acceptTerms() {
+      var xhr = new XMLHttpRequest();
+      xhr.open('GET', '/accept', true);
+      
+      xhr.onload = function() {
+        if (xhr.status === 200) {
+          
+          document.getElementById('terms-content').style.display = 'none';
+          loadContent(); 
+        } else {
+          alert("You must accept the terms first.");
+        }
+      };
+      
+      xhr.send();
+    }
+
+    function loadContent() {
+      var xhr = new XMLHttpRequest();
+      xhr.open('GET', '/content.ajax', true);
+
+      xhr.onload = function() {
+        if (xhr.status === 200) {
+          document.getElementById('content').innerHTML = xhr.responseText;
+        } else {
+          alert("You must accept the terms first.");
+        }
+      };
+      
+      xhr.send();
+    }
+    
+    window.onload = function() {
+      var xhr = new XMLHttpRequest();
+      xhr.open('GET', '/content.ajax', true);
+
+      xhr.onload = function() {
+        if (xhr.status === 403) {
+          
+          document.getElementById('accept-button').style.display = 'block';
+
+          document.getElementById('accept-button').onclick = acceptTerms;
+        } else {
+          
+          loadContent();
+        }
+      };
+
+      xhr.send();
+    };
+  </script>
+</body>
+</html>
