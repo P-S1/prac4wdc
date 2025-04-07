@@ -62,12 +62,10 @@ router.get('/color.html', function(req, res) {
 
 
 
-
-
 const newcolorarray = ['red', 'yellow', 'green', 'blue'];
 
 
-let newcolorcounter = 0;
+let newcolorcounter = 0;  
 
 router.get('/color.txt', function(req, res, next) {
   
@@ -76,15 +74,9 @@ router.get('/color.txt', function(req, res, next) {
   
   newcolorcounter++;
   if (newcolorcounter === newcolorarray.length) {
-    newcolorcounter = 0;
+    newcolorcounter = 0;  
   }
 });
-
-
-
-
-
-
 
 
 
