@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Visitor Log</title>
+</head>
+<body>
+  <h1>Visitor Log</h1>
+  <ul id="timestamp-list"></ul>
+
+  <script>
+    
+    function fetchLogData() {
+      var xhr = new XMLHttpRequest();
+      xhr.open('GET', '/log.json', true);  
+
+      xhr.onload = function() {
+        if (xhr.status === 200) {
+          var timestamps = JSON.parse(xhr.responseText);  
+          var list = document.getElementById('timestamp-list');
+          list.innerHTML = '';  
+
+          
+          timestamps.forEach(function(timestamp) {
+            var li = document.createElement('li');
+            li.textContent = timestamp;
+            list.appendChild(li);
+          });
+        }
+      };
+
+      xhr.send();
+    }
+
+    
+    window.onload = fetchLogData;
+
+    
+    setInterval(function() {
+      var xhr = new XMLHttpRequest();
+      xhr.open('GET', '/log-ro.json', true);  
+
+      xhr.onload = function() {
+        if (xhr.status === 200) {
+          var timestamps = JSON.parse(xhr.responseText);  
+          var list = document.getElementById('timestamp-list');
+          list.innerHTML = '';  
+
+          
+          timestamps.forEach(function(timestamp) {
+            var li = document.createElement('li');
+            li.textContent = timestamp;
+            list.appendChild(li);
+          });
+        }
+      };
+
+      xhr.send();
+    }, 10000);  
+  </script>
+</body>
+</html>
