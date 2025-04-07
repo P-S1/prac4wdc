@@ -62,6 +62,34 @@ router.get('/color.html', function(req, res) {
 
 
 
+
+
+const newcolorarray = ['red', 'yellow', 'green', 'blue'];
+
+
+let newcolorcounter = 0;
+
+router.get('/color.txt', function(req, res, next) {
+  
+  res.send(newcolorarray[newcolorcounter]);
+
+  
+  newcolorcounter++;
+  if (newcolorcounter === newcolorarray.length) {
+    newcolorcounter = 0;
+  }
+});
+
+
+
+
+
+
+
+
+
+
+
 let visitTimestamps = [];
 
 /* GET /log.html */
