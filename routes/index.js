@@ -27,17 +27,24 @@ router.get('/last.txt', function(req, res) {
 
 
 
-let visitCount = 0;
-
-// Array of colors
+let colorCycleIndex = 0;
 const colors = ['red', 'yellow', 'green', 'blue'];
 
-/* GET /color.html */
-router.get('/color.html', function(req, res) {
-  
-  const currentColor = colors[visitCount % colors.length];
 
-  visitCount++;
+router.get('/color.txt', function(req, res) {
+  const currentColor = colors[colorCycleIndex];
+  
+  
+  colorCycleIndex = (colorCycleIndex + 1) % colors.length;
+
+  res.send(currentColor);  
+});
+
+
+router.get('/color.html', function(req, res) {
+  const currentColor = colors[colorCycleIndex];
+  
+  colorCycleIndex = (colorCycleIndex + 1) % colors.length;
   
   res.send(`
     <!DOCTYPE html>

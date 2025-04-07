@@ -6,11 +6,10 @@
   <title>Color Change Page</title>
 </head>
 <body>
-  <h1 id="color-heading">Color will appear here</h1>
-  <button id="change-color-button" type="button">Change Color</button>
+  <h1 id="color-heading">The Color will appear here</h1>
+  <button id="change-color-button" type="button">Change the Color</button>
 
   <script>
-    
     function fetchColor() {
       var xhr = new XMLHttpRequest();
       xhr.open('GET', '/color.txt', true);  
@@ -27,11 +26,9 @@
 
       xhr.send();
     }
-
     
     window.onload = fetchColor;
 
-    
     document.getElementById('change-color-button').onclick = fetchColor;
   </script>
 </body>
