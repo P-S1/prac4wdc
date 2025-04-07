@@ -124,4 +124,26 @@ router.get('/log-ro.json', function(req, res) {
 });
 
 
+
+
+router.get('/contact.ajax', function(req, res) {
+  res.send('<a href="mailto:your.email@example.com">Email Me</a>');  
+});
+
+
+router.get('/search.ajax', function(req, res) {
+  res.send(`
+    <label for="search">Search:</label>
+    <input type="text" id="search" name="search">
+    <button>Search</button>
+  `);  
+});
+
+
+router.get('/about.ajax', function(req, res) {
+  res.send('<p>AJAX is awesome because it lets web pages update dynamically without reloading the entire page!</p>');
+});
+
+
+
 module.exports = router;

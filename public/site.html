@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My AJAX Site</title>
+</head>
+<body>
+  <h1>My AJAX Site</h1>
+  <button id="contact-btn" type="button">Contact</button>
+  <button id="search-btn" type="button">Search</button>
+  <button id="about-btn" type="button">About</button>
+
+  <main id="content">
+
+  </main>
+
+  <script>
+    
+    document.getElementById('contact-btn').addEventListener('click', function() {
+      var xhr = new XMLHttpRequest();
+      xhr.open('GET', '/contact.ajax', true);
+      
+      xhr.onload = function() {
+        if (xhr.status === 200) {
+          document.getElementById('content').innerHTML = xhr.responseText;  
+        }
+      };
+      
+      xhr.send();
+    });
+
+    document.getElementById('search-btn').addEventListener('click', function() {
+      var xhr = new XMLHttpRequest();
+      xhr.open('GET', '/search.ajax', true);
+      
+      xhr.onload = function() {
+        if (xhr.status === 200) {
+          document.getElementById('content').innerHTML = xhr.responseText;
+        }
+      };
+      
+      xhr.send();
+    });
+
+    document.getElementById('about-btn').addEventListener('click', function() {
+      var xhr = new XMLHttpRequest();
+      xhr.open('GET', '/about.ajax', true);
+      
+      xhr.onload = function() {
+        if (xhr.status === 200) {
+          document.getElementById('content').innerHTML = xhr.responseText;
+        }
+      };
+      
+      xhr.send();
+    });
+  </script>
+</body>
+</html>
