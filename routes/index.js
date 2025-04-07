@@ -108,6 +108,20 @@ router.get('/log.html', function(req, res) {
 });
 
 
+let visitTimestampsJSON = [];  
+
+
+router.get('/log.json', function(req, res) {
+  const currentTimestamp = new Date().toISOString();
+  visitTimestampsJSON.push(currentTimestamp);  
+
+  res.json(visitTimestampsJSON);  
+});
+
+
+router.get('/log-ro.json', function(req, res) {
+  res.json(visitTimestampsJSON);  
+});
 
 
 module.exports = router;
