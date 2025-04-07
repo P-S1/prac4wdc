@@ -79,24 +79,35 @@ router.get('/color.txt', function(req, res, next) {
 });
 
 
+let visitTimestampsHTML = [];  
 
-// Visitor Log - Tracks timestamps
-let visitTimestamps = [];
+/* GET /log.html */
+router.get('/log.html', function(req, res) {
+  const currentTimestamp = new Date().toISOString();  
 
-router.get('/log.json', function(req, res) {
-  const currentTimestamp = new Date().toISOString();
+  visitTimestampsHTML.push(currentTimestamp);  
   
-  // Add new timestamp for the visit
-  visitTimestamps.push(currentTimestamp);
+  let timestampList = visitTimestampsHTML.map(timestamp => `<li>${timestamp}</li>`).join('');  
 
-  // Send the JSON array of timestamps
-  res.json(visitTimestamps);  // JSON response with all timestamps
+  res.send(`
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Visitor Log</title>
+    </head>
+    <body>
+      <h1>Visitor Log</h1>
+      <ul>
+        ${timestampList}
+      </ul>
+    </body>
+    </html>
+  `);
 });
 
-// Visitor Log Read-Only - Does not add timestamps
-router.get('/log-ro.json', function(req, res) {
-  res.json(visitTimestamps);  // JSON response with existing timestamps, no new entries
-});
+
 
 
 module.exports = router;
