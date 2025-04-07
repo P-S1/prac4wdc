@@ -25,8 +25,6 @@ router.get('/last.txt', function(req, res) {
 });
 
 
-
-
 let colorCycleIndex = 0;
 const colors = ['red', 'yellow', 'green', 'blue'];
 
